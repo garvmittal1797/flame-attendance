@@ -71,4 +71,13 @@ def get_attendance():
         time.sleep(1)
 
     driver.quit()
+
+    # Save to CSV
+    import pandas as pd
+    df = pd.DataFrame(all_subjects)
+    df.to_csv("attendance.csv", index=False)
+
     return all_subjects
+
+if __name__ == "__main__":
+    get_attendance()

@@ -1,0 +1,53 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #ffe6f2;
+    margin: 0;
+    padding: 0;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+table.striped {
+    margin: auto;
+    border-collapse: collapse;
+    width: 70%;
+    background: #fff0f6;
+    box-shadow: 0 2px 16px rgba(255, 105, 180, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+}
+table.striped th, table.striped td {
+    padding: 14px 18px;
+    text-align: center;
+    font-size: 1.1em;
+}
+table.striped th {
+    background: #ff69b4;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ffb6c1;
+}
+table.striped tr:nth-child(even) {
+    background: #ffe6f2;
+}
+table.striped tr:hover {
+    background: #ffd1ea;
+}
+.download-btn {
+    display: inline-block;
+    background: #ff69b4;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: background 0.2s;
+}
+.download-btn:hover {
+    background: #ff1493;
+}

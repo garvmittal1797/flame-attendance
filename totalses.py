@@ -43,10 +43,14 @@ def get_total_sessions():
             empty_weeks = 0
             for event in events:
                 text = event.text.strip()
-                match = re.search(r"[A-Z]{3,4}\d{3}", text)
+                # Try to extract course code from the event text robustly
+                match = re.search(r"([A-Z]{3,4}\d{3})", text)
                 if match:
-                    course_code = match.group()
+                    course_code = match.group(1)
                     course_totals[course_code] = course_totals.get(course_code, 0) + 1
+                else:
+                    # Optionally log or skip events without a course code
+                    pass
 
         if empty_weeks >= 3:
             break
@@ -63,4 +67,13 @@ def get_total_sessions():
             "Total Sessions": v,
             "Sessions Can Be Missed": int(v*0.25)
         })
+
+    # Save to CSV
+    import pandas as pd
+    df = pd.DataFrame(totals_list)
+    df.to_csv("totalses.csv", index=False)
+
     return totals_list
+
+if __name__ == "__main__":
+    get_total_sessions()

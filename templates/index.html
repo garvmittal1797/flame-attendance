@@ -1,45 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Attendance Summary</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Attendance Details</h1>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Attended</th>
-            <th>Missed</th>
-            <th>Percentage</th>
-        </tr>
-        {% for s in subjects %}
-        <tr>
-            <td>{{ s.name }}</td>
-            <td>{{ s.course }}</td>
-            <td>{{ s.attended }}</td>
-            <td>{{ s.missed }}</td>
-            <td>{{ s.percentage }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <h1>Total Sessions Per Course</h1>
-    <table border="1">
-        <tr>
-            <th>Course Code</th>
-            <th>Total Sessions</th>
-            <th>Sessions Can Be Missed</th>
-        </tr>
-        {% for t in totals %}
-        <tr>
-            <td>{{ t['Course Code'] }}</td>
-            <td>{{ t['Total Sessions'] }}</td>
-            <td>{{ t['Sessions Can Be Missed'] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div style="text-align:center;margin-bottom:20px;">
+        <a href="/attendance_summary.csv" class="download-btn">Download CSV</a>
+    </div>
+    <div class="center">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Attended</th>
+                    <th>Missed</th>
+                    <th>Percentage Attendance</th>
+                    <th>Total Sessions</th>
+                    <th>Sessions Can Be Missed</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if table_data|length == 0 %}
+                <tr>
+                    <td colspan="6" style="text-align:center;color:red;font-weight:bold;">No data available. Please check your CSV files and ensure course codes match.</td>
+                </tr>
+                {% else %}
+                {% for row in table_data %}
+                <tr>
+                    <td>{{ row['Course Code'] }}</td>
+                    <td>{{ row['Attended'] }}</td>
+                    <td>{{ row['Missed'] }}</td>
+                    <td>{{ row['Percentage Attendance'] }}</td>
+                    <td>{{ row['Total Sessions'] }}</td>
+                    <td>{{ row['Sessions Can Be Missed'] }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
