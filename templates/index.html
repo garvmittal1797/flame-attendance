@@ -7,7 +7,14 @@
 <body>
     <div style="text-align:center;margin-bottom:20px;">
         <a href="/attendance_summary.csv" class="download-btn">Download CSV</a>
+        <a href="/logout" class="download-btn" style="margin-left:10px;background:#ffb6c1;">Logout</a>
+        <a href="/fetch-attendance" class="download-btn" style="margin-left:10px;background:#32cd32;">Fetch Live Attendance</a>
     </div>
+    {% if first_name %}
+    <div style="text-align:center;font-size:1.3em;font-weight:bold;margin-bottom:10px;">
+        Hi {{ first_name }}, this is your attendance
+    </div>
+    {% endif %}
     <div class="center">
         <table class="striped">
             <thead>
